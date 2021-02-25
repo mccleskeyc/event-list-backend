@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Meeting.create([
+    {name: "Lecture: Intro to JavaScript", description: "Join your cohort as your lead teaches about the fundamentals of JavaScript", date: Date.today},
+    {name: "Open Office Hours", description: "Have a question? Get an answer!", date: Date.today},
+    {name: "Social Event: Cohort Dinner", description: "Grab a virtual bite with your classmates", date: Date.today}
+])
