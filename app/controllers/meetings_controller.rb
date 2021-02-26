@@ -36,6 +36,8 @@ class MeetingsController < ApplicationController
   # DELETE /meetings/1
   def destroy
     @meeting.destroy
+
+    render json: @meeting
   end
 
   private
