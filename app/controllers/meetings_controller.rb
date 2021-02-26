@@ -5,7 +5,7 @@ class MeetingsController < ApplicationController
   def index
     @meetings = Meeting.all
 
-    render json: @meetings, except: [:created_at, :updated_at]
+    render json: @meetings, except: [:created_at, :updated_at, :host_id], include: [:host]
   end
 
   # GET /meetings/1
