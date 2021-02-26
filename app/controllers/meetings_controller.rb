@@ -5,7 +5,7 @@ class MeetingsController < ApplicationController
   def index
     @meetings = Meeting.all
 
-    render json: @meetings
+    render json: @meetings, except: [:created_at, :updated_at]
   end
 
   # GET /meetings/1
@@ -18,7 +18,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.new(meeting_params)
 
     if @meeting.save
-      render json: @meeting, status: :created, location: @meeting
+      render json: @meeting, status: :created, location: @meeting, except: [:created_at, :updated_at]
     else
       render json: @meeting.errors, status: :unprocessable_entity
     end
