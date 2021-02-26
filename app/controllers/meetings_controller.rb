@@ -18,7 +18,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.new(meeting_params)
 
     if @meeting.save
-      render json: @meeting, status: :created, location: @meeting, except: [:created_at, :updated_at]
+      render json: @meeting, status: :created, location: @meeting, except: [:created_at, :updated_at, :host_id], include: [:host]
     else
       render json: @meeting.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class MeetingsController < ApplicationController
   # PATCH/PUT /meetings/1
   def update
     if @meeting.update(meeting_params)
-      render json: @meeting
+      render json: @meeting, except: [:created_at, :updated_at, :host_id], include: [:host]
     else
       render json: @meeting.errors, status: :unprocessable_entity
     end
@@ -48,6 +48,6 @@ class MeetingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meeting_params
-      params.require(:meeting).permit(:name, :description, :date)
+      params.require(:meeting).permit(:name, :description, :date, :host_attributes)
     end
 end
